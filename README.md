@@ -31,6 +31,8 @@ For your convenience, the server uses SQLite by default. If you want to use MySQ
 
 Responses to requests to the API server are in JSON format and at minimum contain a status code.
 
+#### Creation
+
 - *Adding a card*: Adds a card to the database with the given title and description. The card is associated with the list with the provided listId.
 <table>
   <tbody>
@@ -79,6 +81,8 @@ Responses to requests to the API server are in JSON format and at minimum contai
     </tr>
   </tbody>
 </table>
+
+#### Modification
 
 - *Editing a card*: Updates the card with the provided cardId. Updates only the fields provided in the querystring.
 
@@ -139,6 +143,8 @@ Responses to requests to the API server are in JSON format and at minimum contai
   </tbody>
 </table>
 
+#### Retrieval
+
 - *Get card by ID*: Gets title, description, and listId from the card associated with the specified cardId.
 
 <table>
@@ -186,6 +192,8 @@ Responses to requests to the API server are in JSON format and at minimum contai
     </tr>
   </tbody>
 </table>
+
+#### Deletion
 
 - *Delete card by ID*: Deletes the list associated with the specified listId.
 
