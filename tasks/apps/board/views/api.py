@@ -32,6 +32,37 @@ def add_card_view(request):
     return JsonResponse({"status": 200, "id": card.id})
 
 
+def all_card_view(request):
+    """ The API endpoint for listing all of the cards. """
+    cards = Card.objects.all()
+    output = []
+
+    for card in cards:
+        output.append({
+            "id": card.id,
+            "title": card.title,
+            "description": card.description,
+            "listId": card.ls.id
+        })
+
+    return JsonResponse({"status": 200, "cards": output})
+
+
+def all_list_view(request):
+    """ The API endpoint for listing all of the lists. """
+    lists = List.objects.all().order_by("order")
+    output = []
+
+    for ls in lists:
+        output.append({
+            "id": ls.id,
+            "title": ls.title,
+            "order": ls.order
+        })
+
+    return JsonResponse({"status": 200, "lists": output})
+
+
 def view_delete_card_view(request, cardId):
     """ The API endpoint for viewing, modifying, and deleting cards. """
     try:

@@ -169,6 +169,44 @@ Responses to requests to the API server are in JSON format and at minimum contai
   </tbody>
 </table>
 
+- *Get all cards*: Gets id, title, description, and listId of all of the cards.
+
+<table>
+  <tbody>
+    <tr>
+      <td>URL</td>
+      <td><code>/card/all</code></td>
+    </tr>
+    <tr>
+      <td>HTTP Method</td>
+      <td>GET</td>
+    </tr>
+    <tr>
+      <td>Parameters</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table>
+
+- *Get all lists*: Gets id, title, and order of all of the lists.
+
+<table>
+  <tbody>
+    <tr>
+      <td>URL</td>
+      <td><code>/list/all</code></td>
+    </tr>
+    <tr>
+      <td>HTTP Method</td>
+      <td>GET</td>
+    </tr>
+    <tr>
+      <td>Parameters</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table>
+
 - *Get list by ID*: Gets title and order from the list associated with the specified listId.
 
 <table>
