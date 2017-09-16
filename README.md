@@ -1,17 +1,6 @@
 # Penn Labs: Backend Technical Project
-Let's build an API server for Trello! If you're not familiar with Trello, it's not a problem. Trello is a task-management tool
-that has 3 major functional components: Boards, Lists, and Cards. Each Board can contain many lists, which in turn can contain many cards. 
-Each card generally represents an individual task that users can manage. Each list is a group of related tasks. We encourage you to play 
-around with the tool [here](http://www.trello.com). A Board is a something that you might use to organize all of your tasks for one facet of your life. For example, we might have a board for School. In the School board, you might have a list for each class that you are taking. Within each list, you might have cards that represent homework assignments, tests, or projects. 
-
-As a general tip, make sure to comment your code. Feel free to use credible third party libraries or packages. As a bonus, feel free to add your own spicy features, as long as they don't disturb the core functionality of the API server.
-
-As a final note, it's not the end of the world if you don't finish this assignment! We are looking for quality code and people who are enthusiastic about programming. 😀
-
-Let's begin! There are two parts to this assignment. 
 
 ## Part 1: API Server
-First, take a look at the structure for the data we'd like you to assume. You may assume that your entire application deals with one board. Thus, you only need to deal with lists and cards.
 
 ### Structure of data
 - Card
@@ -24,9 +13,7 @@ First, take a look at the structure for the data we'd like you to assume. You ma
   - order: `Number`
   - id: `Number`
 
-Build an API server that has the following routes. 
-You must store data necessary for this API server in a database. You are free to use any database that you prefer.
-Responses to requests to your API server should be in JSON format and at minimum contain a status code.
+Responses to requests to the API server should be in JSON format and at minimum contain a status code.
 
 - *Adding a card*: Should add a card to the database with the given title and description. The card should be associated with the list with the provided listId.
 <table>
