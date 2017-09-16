@@ -62,6 +62,7 @@ def add_list_view(request):
     if not title:
         return JsonResponse({"status": 400, "error": "Missing title in list creation request."}, status=400)
 
+    # Create the list and put it at the end of the board.
     ls = List.objects.create(title=title, order=List.objects.all().count() + 1)
 
     return JsonResponse({"status": 200, "id": ls.id})
@@ -75,6 +76,7 @@ def view_delete_list_view(request, listId):
         return JsonResponse({"status": 404, "error": "The list you are trying to retrieve/modify does not exist!"}, status=404)
 
     if request.method == "DELETE":
+        # Shift all lists after the current list back one.
         List.objects.filter(order__gt=ls.order).update(order=F("order") - 1)
         ls.delete()
         return JsonResponse({"status": 200})
