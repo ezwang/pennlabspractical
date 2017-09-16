@@ -2,7 +2,17 @@
 
 ## Installation
 
-TODO
+The following instructions were tested with Ubuntu 16.04 LTS.
+
+1. Run `sudo apt-get install python3 python3-pip virtualenv`.
+2. Enter this repository, and run `virtualenv --python=python3 venv`.
+3. Run `source venv/bin/activate` to enter the virtual environment.
+4. Run `pip install -r requirements.txt`.
+5. Run `./manage.py runserver`.
+
+You should then be able to access the server at `http://localhost:8000`.
+
+For your convenience, the server uses SQLite by default. If you want to use MySQL or PostgreSQL, edit `tasks/settings.py` and add database credentials.
 
 ## API Server
 
