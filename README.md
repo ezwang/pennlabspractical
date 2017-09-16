@@ -1,8 +1,12 @@
 # Penn Labs: Backend Technical Project
 
-## Part 1: API Server
+## Installation
 
-### Data Structure
+TODO
+
+## API Server
+
+### Data Structures
 - Card
   - title: `String`
   - description: `String`
@@ -191,8 +195,33 @@ Responses to requests to the API server are in JSON format and at minimum contai
   </tbody>
 </table>
 
+### API Responses
+
+API responses will return an appropriate HTTP response code with a JSON response. The status codes are listed below:
+
+<table>
+  <tbody>
+    <tr>
+      <td>200</td>
+      <td>The request has succeeded.</td>
+    </tr>
+    <tr>
+      <td>400</td>
+      <td>Bad request. (ex: You passed in a string to the id field, or fields are missing.)</td>
+    </tr>
+    <tr>
+      <td>404</td>
+      <td>The object you are trying to modify does not exist.</td>
+    </tr>
+    <tr>
+      <td>405</td>
+      <td>You submitted in invalid method to an endpoint. (ex: submitting a DELETE request to `/editlist/:listId`)</td>
+    </tr>
+  </tbody>
+</table>
+
 ## Frontend
-Build an HTML form that enables form users to add cards and add lists. You can use this form to test your API server. We are not concerned with the aesthetics of the form. We just care that it is functional.
+There is an HTML form that enables form users to add cards and add lists. You can use this form to test your API server. We are not concerned with the aesthetics of the form. We just care that it is functional.
 
 ## Submitting
 1. Clone this repository
