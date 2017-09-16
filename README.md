@@ -197,7 +197,7 @@ Responses to requests to the API server are in JSON format and at minimum contai
 
 ### API Responses
 
-API responses will return an appropriate HTTP response code with a JSON response. The status codes are listed below:
+API responses will return an appropriate HTTP response code with a JSON response. A minimum of the status code is given, along with any additional requested data. The status codes are listed below:
 
 <table>
   <tbody>
