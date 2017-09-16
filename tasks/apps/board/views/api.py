@@ -33,23 +33,54 @@ def add_card_view(request):
 
 
 def view_delete_card_view(request, cardId):
-    """ The API endpoint for viewing and deleting cards. """
+    """ The API endpoint for viewing, modifying, and deleting cards. """
     try:
         card = get_object_or_404(Card, id=cardId)
     except Http404:
         return JsonResponse({"status": 404, "error": "The card you are trying to retrieve/modify does not exist!"}, status=404)
 
     if request.method == "DELETE":
+        # Deleting a Card
         card.delete()
         return JsonResponse({"status": 200})
     elif request.method == "GET":
+        # Viewing a Card
         return JsonResponse({
             "title": card.title,
             "description": card.description,
             "listId": card.ls.id
         })
+    elif request.method == "POST":
+        # Editing a Card
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+        listId = request.POST.get("listId")
+
+        if title:
+            card.title = title
+
+        # Allow for description to be empty
+        if description is not None:
+            card.description = description
+
+        if listId:
+            try:
+                listId = int(listId)
+            except ValueError:
+                return JsonResponse({"status": 400, "error": "Unable to parse new list ID!"}, status=400)
+
+            try:
+                ls = get_object_or_404(List, id=listId)
+            except Http404:
+                return JsonResponse({"status": 404, "error": "The list you are trying to retrieve does not exist!"}, status=404)
+
+            card.ls = ls
+
+        card.save()
+
+        return JsonResponse({"status": 200})
     else:
-        return JsonResponse({"status": 405, "error": "The only allowed methods for this endpoint are GET, DELETE."}, status=405)
+        return JsonResponse({"status": 405, "error": "The only allowed methods for this endpoint are GET, POST, DELETE."}, status=405)
 
 
 def add_list_view(request):

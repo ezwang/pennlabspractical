@@ -49,7 +49,7 @@ Responses to requests to the API server are in JSON format and at minimum contai
         <ul>
           <li><code>listId</code>: the ID of the list</li>
           <li><code>title</code>: the title of the list</li>
-          <li><code>description</code>: the list description</li>
+          <li><code>description</code>: the list description (optional)</li>
         </ul>
       </td>
     </tr>
@@ -74,6 +74,36 @@ Responses to requests to the API server are in JSON format and at minimum contai
         Post Form Parameters:
         <ul>
           <li><code>title</code>: the title of the list</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+- *Editing a card*: Updates the card with the provided cardId. Updates only the fields provided in the querystring.
+
+<table>
+  <tbody>
+    <tr>
+      <td>URL</td>
+      <td><code>/card/:cardId</code></td>
+    </tr>
+    <tr>
+      <td>HTTP Method</td>
+      <td>POST</td>
+    </tr>
+    <tr>
+      <td>Parameters</td>
+      <td>
+        URL Parameters:
+        <ul>
+          <li><code>cardId</code>: the ID of the desired card</li>
+        </ul>
+        Post Form Parameters:
+        <ul>
+          <li><code>title</code>: the title of the list</li>
+          <li><code>description</code>: the description of the list (optional)</li>
+          <li><code>listId</code>: the list that this card is associated with</li>
         </ul>
       </td>
     </tr>
