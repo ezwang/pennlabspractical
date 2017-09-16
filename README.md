@@ -2,7 +2,7 @@
 
 ## Part 1: API Server
 
-### Structure of data
+### Data Structure
 - Card
   - title: `String`
   - description: `String`
@@ -13,9 +13,11 @@
   - order: `Number`
   - id: `Number`
 
-Responses to requests to the API server should be in JSON format and at minimum contain a status code.
+### API Endpoints
 
-- *Adding a card*: Should add a card to the database with the given title and description. The card should be associated with the list with the provided listId.
+Responses to requests to the API server are in JSON format and at minimum contain a status code.
+
+- *Adding a card*: Adds a card to the database with the given title and description. The card is associated with the list with the provided listId.
 <table>
   <tbody>
     <tr>
@@ -40,7 +42,7 @@ Responses to requests to the API server should be in JSON format and at minimum 
   </tbody>
 <table>
 
-- *Adding a list*: Should add a list to the database with the given title. The newly added list's order
+- *Adding a list*: Adds a list to the database with the given title. The newly added list's order is at the end of the board.
 
 <table>
   <tbody>
@@ -64,7 +66,7 @@ Responses to requests to the API server should be in JSON format and at minimum 
   </tbody>
 </table>
 
-- *Changing the order of a list*: Should update the list with the provided listId. Should update only the fields provided in the querystring.
+- *Changing the order of a list*: Updates the list with the provided listId. Updates only the fields provided in the querystring.
 
 <table>
   <tbody>
@@ -93,7 +95,7 @@ Responses to requests to the API server should be in JSON format and at minimum 
   </tbody>
 </table>
 
-- *Get card by ID*: Should get title, description, and listId from the card associated with the specified cardId.
+- *Get card by ID*: Gets title, description, and listId from the card associated with the specified cardId.
 
 <table>
   <tbody>
@@ -117,7 +119,7 @@ Responses to requests to the API server should be in JSON format and at minimum 
   </tbody>
 </table>
 
-- *Get list by ID*: Should get title and order from the list associated with the specified listId.
+- *Get list by ID*: Gets title and order from the list associated with the specified listId.
 
 <table>
   <tbody>
@@ -141,7 +143,7 @@ Responses to requests to the API server should be in JSON format and at minimum 
   </tbody>
 </table>
 
-- *Delete card by ID*: Should delete the list associated with the specified listId.
+- *Delete card by ID*: Deletes the list associated with the specified listId.
 
 <table>
   <tbody>
@@ -165,7 +167,7 @@ Responses to requests to the API server should be in JSON format and at minimum 
   </tbody>
 </table>
 
-- *Delete list by ID*: Should delete the list associated with the specified listId.
+- *Delete list by ID*: Deletes the list associated with the specified listId.
 
 <table>
   <tbody>
@@ -189,139 +191,7 @@ Responses to requests to the API server should be in JSON format and at minimum 
   </tbody>
 </table>
 
-<hr>
-
-To clear things up a bit, consider the following example:
-- Our data in the backend might look like this:
-
-  Lists
-  <table>
-    <tr>
-      <th>
-        Id
-      </th>
-      <th>
-        Title
-      </th>
-      <th>
-        Order
-      </th>
-    </tr>
-    <tr>
-      <td>
-        1234
-      </td>
-      <td>
-        "Grocery List"
-      </td>
-      <td>
-        1
-      </td>
-    </tr>
-    <tr>
-      <td>
-        1235
-      </td>
-      <td>
-        "School Supplies"
-      </td>
-      <td>
-        2
-      </td>
-    </tr>
-  </table>
-
-  Cards
-  <table>
-    <tr>
-      <th>
-        Id
-      </th>
-      <th>
-        Title
-      </th>
-      <th>
-        Description
-      </th>
-      <th>
-        ListId
-      </th>
-    </tr>
-    <tr>
-      <td>
-        5332
-      </td>
-      <td>
-        "Eggs"
-      </td>
-      <td>
-        "Need to buy a lot of eggs"
-      </td>
-      <td>
-        1234
-      </td>
-    </tr>
-  </table>
-
-- User sends GET `/list/1234`
-- Assuming the request is well-formed, the user receives the following response:
-  ```
-  {
-    status: 200,
-    title: "Grocery List",
-    order: 1
-  }
-  ```
-- User sends POST `/card` with params: {listId: 1234, title: "Milk", description: "Go Buy Milk"}
-- Cards data now looks like:
-
-  Cards
-  <table>
-    <tr>
-      <th>
-        Id
-      </th>
-      <th>
-        Title
-      </th>
-      <th>
-        Description
-      </th>
-      <th>
-        ListId
-      </th>
-    </tr>
-    <tr>
-      <td>
-        5332
-      </td>
-      <td>
-        "Eggs"
-      </td>
-      <td>
-        "Need to buy a lot of eggs"
-      </td>
-      <td>
-        1234
-      </td>
-    </tr>
-    <tr>
-      <td>
-        5333
-      </td>
-      <td>
-        "Milk"
-      </td>
-      <td>
-        "Go Buy Milk"
-      </td>
-      <td>
-        1234
-      </td>
-    </tr>
-  </table>
-
-## Part 2: Data form
+## Frontend
 Build an HTML form that enables form users to add cards and add lists. You can use this form to test your API server. We are not concerned with the aesthetics of the form. We just care that it is functional.
 
 ## Submitting
