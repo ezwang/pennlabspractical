@@ -221,10 +221,4 @@ API responses will return an appropriate HTTP response code with a JSON response
 </table>
 
 ## Frontend
-There is an HTML form that enables form users to add cards and add lists. You can use this form to test your API server. We are not concerned with the aesthetics of the form. We just care that it is functional.
-
-## Submitting
-1. Clone this repository
-2. Checkout a branch structured as yourfirstname_yourlastname
-3. Push all of your commits to your branch.
-4. If you have any questions, confusions, or comments at all, feel SUPER FREE to email us at `niharp@seas.upenn.edu`, `rohanmen@seas.upenn.edu`, or `branlin@seas.upenn.edu`. We're here to help 😁. We'll help you through it - don't sweat!
+There is an HTML user interface that enables users to add cards and add lists.
