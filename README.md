@@ -231,4 +231,4 @@ API responses will return an appropriate HTTP response code with a JSON response
 </table>
 
 ## Frontend
-There is an HTML user interface that enables users to add cards and add lists. You can use the frontend at `http://localhost:8080`.
+There is an HTML user interface that enables users to add cards and add lists. You can use the frontend at `http://localhost:8000`.
