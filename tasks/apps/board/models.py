@@ -3,7 +3,7 @@ from django.db import models
 
 class List(models.Model):
     title = models.TextField()
-    order = models.IntegerField(unique=True)
+    order = models.IntegerField()
 
 
 class Card(models.Model):
