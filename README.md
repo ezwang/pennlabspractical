@@ -215,7 +215,7 @@ API responses will return an appropriate HTTP response code with a JSON response
     </tr>
     <tr>
       <td>405</td>
-      <td>You submitted in invalid method to an endpoint. (ex: submitting a DELETE request to `/editlist/:listId`)</td>
+      <td>You submitted in invalid method to an endpoint. (ex: submitting a DELETE request to <code>/editlist/:listId</code>)</td>
     </tr>
   </tbody>
 </table>
