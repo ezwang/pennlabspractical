@@ -5,6 +5,7 @@
         <title>Tasks</title>
         <link rel="stylesheet" href="{% static 'css/tether.css' %}" type="text/css">
         <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}" type="text/css">
         <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
         <script src="{% static 'js/jquery.js' %}"></script>
         <script src="{% static 'js/tether.js' %}"></script>
@@ -21,6 +22,18 @@
                 }
             }
 
+            var param_default = $(".param").clone();
+
+            $("#add-param").click(function(e) {
+                e.preventDefault();
+                $("#param-list").append(param_default.clone());
+            });
+
+            $("#param-list").on("click", ".btn-danger", function(e) {
+                e.preventDefault();
+                $(this).closest(".param").remove();
+            });
+
             $("#request button").click(function(e) {
                 e.preventDefault();
 
@@ -31,9 +44,20 @@
 
                 var type = $(this).attr("id");
 
+                var params = {};
+
+                $("#param-list .param").each(function() {
+                    var key = $(this).find(".key").val();
+                    var val = $(this).find(".value").val();
+
+                    params[key] = val;
+                });
+
                 $.ajax({
                     url: $("#url").val(),
                     method: type,
+                    data: params,
+                    dataType: "text",
                     success: function(data) {
                         showOutput(data);
                     },
@@ -52,6 +76,19 @@
             <div class="form-group">
                 <label>Endpoint Path</label>
                 <input id="url" type="text" placeholder="ex: /editlist/5" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Parameters</label>
+                <div id="param-list">
+                    <div class="param input-group">
+                        <input type="text" class="key form-control" placeholder="Key" />
+                        <input type="text" class="value form-control" placeholder="Value" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                        </span>
+                    </div>
+                </div>
+                <button id="add-param" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Add Parameter</button>
             </div>
             <div id="request">
                 <button id="GET" class="btn btn-success">GET</button>

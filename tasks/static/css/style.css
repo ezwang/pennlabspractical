@@ -16,3 +16,6 @@ html, body
 button {
     cursor: pointer;
 }
+.param {
+    margin-bottom: 15px;
+}
