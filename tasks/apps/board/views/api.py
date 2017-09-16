@@ -7,6 +7,7 @@ from ..models import List, Card
 
 
 def add_card_view(request):
+    """ The API endpoint for adding a card. """
     if not request.method == "POST":
         return JsonResponse({"status": 405, "error": "The only allowed methods for this endpoint are POST."}, status=405)
 
@@ -32,6 +33,7 @@ def add_card_view(request):
 
 
 def view_delete_card_view(request, cardId):
+    """ The API endpoint for viewing and deleting cards. """
     try:
         card = get_object_or_404(Card, id=cardId)
     except Http404:
@@ -51,6 +53,7 @@ def view_delete_card_view(request, cardId):
 
 
 def add_list_view(request):
+    """ The API endpoint for adding a list. """
     if not request.method == "POST":
         return JsonResponse({"status": 405, "error": "The only allowed methods for this endpoint are POST."}, status=405)
 
@@ -65,6 +68,7 @@ def add_list_view(request):
 
 
 def view_delete_list_view(request, listId):
+    """ The API endpoint for viewing and deleting lists. """
     try:
         ls = get_object_or_404(List, id=listId)
     except Http404:
@@ -81,6 +85,10 @@ def view_delete_list_view(request, listId):
 
 
 def edit_list_view(request, listId):
+    """ The API endpoint for editing a list. """
+    if not request.method == "POST":
+        return JsonResponse({"status": 405, "error": "The only allowed methods for this endpoint are POST."}, status=405)
+
     try:
         ls = get_object_or_404(List, id=listId)
     except Http404:
@@ -98,8 +106,12 @@ def edit_list_view(request, listId):
         except ValueError:
             return JsonResponse({"status": 400, "error": "Unable to parse list order!"}, status=400)
 
+        # Remove the list from the order (shift all lists after it back one).
         List.objects.filter(order__gt=ls.order).update(order=F("order") - 1)
+
+        # Add the list to the order (shift all lists after it forward one).
         List.objects.filter(order__gte=order).update(order=F("order") + 1)
+
         ls.order = order
 
     ls.save()

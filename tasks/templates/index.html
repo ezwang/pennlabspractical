@@ -1,8 +1,66 @@
+{% load static %}
 <!doctype html>
 <html>
     <head>
         <title>Tasks</title>
+        <link rel="stylesheet" href="{% static 'css/tether.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+        <script src="{% static 'js/jquery.js' %}"></script>
+        <script src="{% static 'js/tether.js' %}"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+        <script>
+        $(document).ready(function() {
+            function showOutput(data) {
+                try {
+                    $("#output").text(JSON.stringify(JSON.parse(data), null, 4));
+                }
+                catch (e) {
+                    console.error(e);
+                    $("#output").text(data);
+                }
+            }
+
+            $("#request button").click(function(e) {
+                e.preventDefault();
+
+                if (!$("#url").val() || $("#url").val() == "/") {
+                    $("#output").text("Please enter a valid API endpoint!");
+                    return;
+                }
+
+                var type = $(this).attr("id");
+
+                $.ajax({
+                    url: $("#url").val(),
+                    method: type,
+                    success: function(data) {
+                        showOutput(data);
+                    },
+                    error: function(xhr, status, error) {
+                        showOutput(xhr.responseText);
+                    }
+                });
+            });
+        });
+        </script>
     </head>
     <body>
+        <div id="content">
+            <h1>Tasks API Frontend</h1>
+            <hr />
+            <div class="form-group">
+                <label>Endpoint Path</label>
+                <input id="url" type="text" placeholder="ex: /editlist/5" class="form-control" />
+            </div>
+            <div id="request">
+                <button id="GET" class="btn btn-success">GET</button>
+                <button id="POST" class="btn btn-warning">POST</button>
+                <button id="DELETE" class="btn btn-danger">DELETE</button>
+            </div>
+            <hr />
+            <b>Output</b>
+            <pre id="output">API response data will appear here!</pre>
+        </div>
     </body>
 </html>
