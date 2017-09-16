@@ -3,7 +3,7 @@ from django.http import Http404, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.db.models import F
 
-from .models import List, Card
+from ..models import List, Card
 
 
 def add_card_view(request):
