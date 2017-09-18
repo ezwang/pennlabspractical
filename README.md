@@ -14,6 +14,15 @@ You should then be able to access the server at `http://localhost:8000`.
 
 For your convenience, the server uses SQLite by default. If you want to use MySQL or PostgreSQL, edit `tasks/settings.py` and add database credentials.
 
+## Useful Tips for Graders
+
+This repository is a pretty standard Django project setup. The important things you probably want to look at are:
+
+- tasks/apps/board/models.py - Database Models
+- tasks/apps/board/views/\* - API Endpoint Implementations
+- tasks/static/\* - Frontend
+- tasks/templates/\* - Frontend
+
 ## API Server
 
 ### Data Structures
