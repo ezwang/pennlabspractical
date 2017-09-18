@@ -152,6 +152,31 @@ Responses to requests to the API server are in JSON format and at minimum contai
   </tbody>
 </table>
 
+- *Merging two lists*: Puts all of the cards from the first list into the second list, and deletes the first list.
+
+<table>
+  <tbody>
+    <tr>
+      <td>URL</td>
+      <td><code>/list/merge/:fromList/:toList</code></td>
+    </tr>
+    <tr>
+      <td>HTTP Method</td>
+      <td>POST</td>
+    </tr>
+    <tr>
+      <td>Parameters</td>
+      <td>
+        URL Parameters:
+        <ul>
+          <li><code>fromList</code>: the ID of the list to add cards from and delete</li>
+          <li><code>toList</code>: the ID of the list to add cards to</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 #### Retrieval
 
 - *Get card by ID*: Gets title, description, and listId from the card associated with the specified cardId.

@@ -15,6 +15,7 @@ urlpatterns = [
     url(r"^list$", api.add_list_view, name="add_list"),
     url(r"^list/(?P<listId>\d+)$", api.view_delete_list_view, name="view_list"),
     url(r"^list/(?P<listId>\d+)/cards$", api.view_list_cards_view, name="view_list_cards"),
+    url(r"^list/merge/(?P<fromId>\d+)/(?P<toId>\d+)$", api.merge_lists_view, name="merge_lists"),
     url(r"^list/all$", api.all_list_view, name="view_list_all"),
     url(r"^editlist/(?P<listId>\d+)$", api.edit_list_view, name="edit_list"),
 ]

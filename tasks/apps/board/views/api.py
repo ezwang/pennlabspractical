@@ -8,6 +8,7 @@ from ..models import List, Card
 
 def add_card_view(request):
     """ The API endpoint for creating a card. """
+
     if not request.method == "POST":
         return JsonResponse({"status": 405, "error": "The only allowed methods for this endpoint are POST."}, status=405)
 
@@ -18,22 +19,27 @@ def add_card_view(request):
     if not listId or not title:
         return JsonResponse({"status": 400, "error": "Missing list ID and title in card creation request."}, status=400)
 
+    # Parse the list ID
     try:
         listId = int(listId)
     except ValueError:
         return JsonResponse({"status": 400, "error": "Could not parse list ID."}, status=400)
 
+    # Get the list object from ID
     try:
         ls = get_object_or_404(List, id=listId)
     except Http404:
         return JsonResponse({"status": 400, "error": "Invalid list ID! A list with that ID does not exist."}, status=400)
 
+    # Create the card
     card = Card.objects.create(title=title, description=description, ls=ls)
+
     return JsonResponse({"status": 200, "id": card.id})
 
 
 def all_card_view(request):
     """ The API endpoint for listing all of the cards. """
+
     cards = Card.objects.all()
     output = []
 
@@ -50,6 +56,7 @@ def all_card_view(request):
 
 def all_list_view(request):
     """ The API endpoint for listing all of the lists. """
+
     lists = List.objects.all().order_by("order")
     output = []
 
@@ -65,6 +72,7 @@ def all_list_view(request):
 
 def view_list_cards_view(request, listId):
     """ The API endpoint for viewing cards associated with a list after given a list ID. """
+
     try:
         ls = get_object_or_404(List, id=listId)
     except Http404:
@@ -160,11 +168,15 @@ def view_delete_list_view(request, listId):
         return JsonResponse({"status": 404, "error": "The list you are trying to retrieve/modify does not exist!"}, status=404)
 
     if request.method == "DELETE":
+        # Deleting a List
+
         # Shift all lists after the current list back one.
         List.objects.filter(order__gt=ls.order).update(order=F("order") - 1)
         ls.delete()
         return JsonResponse({"status": 200})
     elif request.method == "GET":
+        # Viewing a List
+
         return JsonResponse({"title": ls.title, "order": ls.order})
     else:
         return JsonResponse({"status": 405, "error": "The only allowed methods for this endpoint are GET, DELETE."}, status=405)
@@ -201,4 +213,25 @@ def edit_list_view(request, listId):
         ls.order = order
 
     ls.save()
+    return JsonResponse({"status": 200})
+
+
+def merge_lists_view(request, fromId, toId):
+    """ API Endpoint to merge all the cards from fromList into toList and delete fromList."""
+
+    if not request.method == "POST":
+        return JsonResponse({"status": 405, "error": "The only allowed methods for this endpoint are POST."}, status=405)
+
+    try:
+        fromList = get_object_or_404(List, id=fromId)
+        toList = get_object_or_404(List, id=toId)
+    except Http404:
+        return JsonResponse({"status": 404, "error": "One of the lists you are trying to retrieve does not exist!"}, status=404)
+
+    # Move all of the cards from the from list to the to list.
+    fromList.card_set.all().update(ls=toList)
+
+    # Delete the from list.
+    fromList.delete()
+
     return JsonResponse({"status": 200})
