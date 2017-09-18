@@ -50,7 +50,7 @@
                     var key = $(this).find(".key").val();
                     var v = $(this).find(".value").val();
 
-                    if (key && v) {
+                    if (key) {
                         params[key] = v;
                     }
                 });
@@ -102,6 +102,8 @@
                 <button class="btn btn-sm btn-primary" data-endpoint="/card/all" data-method="GET">Get All Cards (GET)</button>
                 <button class="btn btn-sm btn-primary" data-endpoint="/list" data-data="title">Create a List (POST)</button>
                 <button class="btn btn-sm btn-primary" data-endpoint="/card" data-data="listId,title,description">Create a Card (POST)</button>
+                <button class="btn btn-sm btn-primary" data-endpoint="/editlist/:listId" data-data="title,order">Edit a List (POST)</button>
+                <button class="btn btn-sm btn-primary" data-endpoint="/card/:cardId" data-data="title,description,listId">Edit a Card (POST)</button>
                 <button class="btn btn-sm btn-primary" data-endpoint="/list" data-data="listId">Delete a List (DELETE)</button>
                 <button class="btn btn-sm btn-primary" data-endpoint="/card" data-data="cardId">Delete a Card (DELETE)</button>
             </div>
