@@ -4,11 +4,12 @@
 
 The following instructions were tested with Ubuntu 16.04 LTS.
 
-1. Run `sudo apt-get install python3 python3-pip virtualenv`.
-2. Enter this repository, and run `virtualenv --python=python3 venv`.
-3. Run `source venv/bin/activate` to enter the virtual environment.
-4. Run `pip install -r requirements.txt`.
-5. Run `./manage.py runserver`.
+1. Clone this project.
+2. Run `sudo apt-get install python3 python3-pip virtualenv`.
+3. Enter the folder this repository is in and run `virtualenv --python=python3 venv`.
+4. Run `source venv/bin/activate` to enter the virtual environment.
+5. Run `pip install -r requirements.txt`.
+6. Run `./manage.py runserver`.
 
 You should then be able to access the server at `http://localhost:8000`.
 
