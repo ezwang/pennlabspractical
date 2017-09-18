@@ -63,6 +63,28 @@ def all_list_view(request):
     return JsonResponse({"status": 200, "lists": output})
 
 
+def view_list_cards_view(request, listId):
+    """ The API endpoint for viewing cards associated with a list after given a list ID. """
+    try:
+        ls = get_object_or_404(List, id=listId)
+    except Http404:
+        return JsonResponse({"status": 404, "error": "The list you are trying to retrieve does not exist!"}, status=404)
+
+    if request.method == "GET":
+        output = []
+
+        for card in ls.card_set.all():
+            output.append({
+                "id": card.id,
+                "title": card.title,
+                "description": card.description
+            })
+
+        return JsonResponse({"status": 200, "cards": output})
+    else:
+        return JsonResponse({"status": 405, "error": "The only allowed methods for this endpoint is GET."}, status=405)
+
+
 def view_delete_card_view(request, cardId):
     """ The API endpoint for viewing, modifying, and deleting cards. """
     try:

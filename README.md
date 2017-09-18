@@ -240,6 +240,30 @@ Responses to requests to the API server are in JSON format and at minimum contai
   </tbody>
 </table>
 
+- *Get cards by list ID*: Gets id, title, and description of all the cards from the list associated with the specified listId.
+
+<table>
+  <tbody>
+    <tr>
+      <td>URL</td>
+      <td><code>/list/:listId/cards</code></td>
+    </tr>
+    <tr>
+      <td>HTTP Method</td>
+      <td>GET</td>
+    </tr>
+    <tr>
+      <td>Parameters</td>
+      <td>
+        URL Parameters:
+        <ul>
+          <li><code>listId</code>: the ID of the desired list</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 #### Deletion
 
 - *Delete card by ID*: Deletes the list associated with the specified listId.
