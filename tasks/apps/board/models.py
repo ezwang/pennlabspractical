@@ -23,6 +23,7 @@ class Card(models.Model):
         description - The card description (optional, can be blank).
         ls - The list that this card is attached to. Use ls.id for the list ID.
     """
+
     title = models.TextField()
     description = models.TextField(blank=True)
     ls = models.ForeignKey(List, null=True, on_delete=models.CASCADE)
