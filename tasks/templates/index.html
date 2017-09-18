@@ -72,15 +72,18 @@
                 e.preventDefault();
 
                 $("#url").val($(this).attr("data-endpoint"));
-                $(".key, .value").val("");
+                $(".param .btn-danger").click();
 
-                var keys = $(this).attr("data-data").split(",");
-                while ($(".param").length < keys.length) {
-                    $("#add-param").click();
-                }
-                var fields = $(".key");
-                for (var i = 0; i < keys.length; i++) {
-                    fields.eq(i).val(keys[i]);
+                var keys = $(this).attr("data-data");
+                if (keys) {
+                    keys = keys.split(",");
+                    while ($(".param").length < keys.length) {
+                        $("#add-param").click();
+                    }
+                    var fields = $(".key");
+                    for (var i = 0; i < keys.length; i++) {
+                        fields.eq(i).val(keys[i]);
+                    }
                 }
 
                 var method = $(this).attr("data-method");
@@ -100,6 +103,7 @@
             <div id="examples">
                 <button class="btn btn-sm btn-primary" data-endpoint="/list/all" data-method="GET">Get All Lists (GET)</button>
                 <button class="btn btn-sm btn-primary" data-endpoint="/card/all" data-method="GET">Get All Cards (GET)</button>
+                <button class="btn btn-sm btn-primary" data-endpoint="/list/:listId/cards">Get Cards by List ID (GET)</button>
                 <button class="btn btn-sm btn-primary" data-endpoint="/list" data-data="title">Create a List (POST)</button>
                 <button class="btn btn-sm btn-primary" data-endpoint="/card" data-data="listId,title,description">Create a Card (POST)</button>
                 <button class="btn btn-sm btn-primary" data-endpoint="/editlist/:listId" data-data="title,order">Edit a List (POST)</button>
