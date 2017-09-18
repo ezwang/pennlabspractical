@@ -7,7 +7,7 @@ from ..models import List, Card
 
 
 def add_card_view(request):
-    """ The API endpoint for adding a card. """
+    """ The API endpoint for creating a card. """
     if not request.method == "POST":
         return JsonResponse({"status": 405, "error": "The only allowed methods for this endpoint are POST."}, status=405)
 

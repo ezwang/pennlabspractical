@@ -9,4 +9,4 @@ class List(models.Model):
 class Card(models.Model):
     title = models.TextField()
     description = models.TextField(blank=True)
-    listId = models.ForeignKey(List, null=True, on_delete=models.CASCADE)
+    ls = models.ForeignKey(List, null=True, on_delete=models.CASCADE)
