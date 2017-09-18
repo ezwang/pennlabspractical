@@ -48,9 +48,11 @@
 
                 $("#param-list .param").each(function() {
                     var key = $(this).find(".key").val();
-                    var val = $(this).find(".value").val();
+                    var v = $(this).find(".value").val();
 
-                    params[key] = val;
+                    if (key && v) {
+                        params[key] = v;
+                    }
                 });
 
                 $.ajax({
@@ -66,12 +68,43 @@
                     }
                 });
             });
+            $("#examples button").click(function(e) {
+                e.preventDefault();
+
+                $("#url").val($(this).attr("data-endpoint"));
+                $(".key, .value").val("");
+
+                var keys = $(this).attr("data-data").split(",");
+                while ($(".param").length < keys.length) {
+                    $("#add-param").click();
+                }
+                var fields = $(".key");
+                for (var i = 0; i < keys.length; i++) {
+                    fields.eq(i).val(keys[i]);
+                }
+
+                var method = $(this).attr("data-method");
+
+                if (method) {
+                    $("#" + method).click();
+                }
+            });
         });
         </script>
     </head>
     <body>
         <div id="content">
             <h1>Tasks API Frontend</h1>
+            <hr />
+            <b>Examples</b>
+            <div id="examples">
+                <button class="btn btn-sm btn-primary" data-endpoint="/list/all" data-method="GET">Get All Lists (GET)</button>
+                <button class="btn btn-sm btn-primary" data-endpoint="/card/all" data-method="GET">Get All Cards (GET)</button>
+                <button class="btn btn-sm btn-primary" data-endpoint="/list" data-data="title">Create a List (POST)</button>
+                <button class="btn btn-sm btn-primary" data-endpoint="/card" data-data="listId,title,description">Create a Card (POST)</button>
+                <button class="btn btn-sm btn-primary" data-endpoint="/list" data-data="listId">Delete a List (DELETE)</button>
+                <button class="btn btn-sm btn-primary" data-endpoint="/card" data-data="cardId">Delete a Card (DELETE)</button>
+            </div>
             <hr />
             <div class="form-group">
                 <label>Endpoint Path</label>

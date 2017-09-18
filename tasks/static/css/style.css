@@ -19,3 +19,6 @@ button {
 .param {
     margin-bottom: 15px;
 }
+#examples button {
+    margin-top: 10px;
+}
